@@ -1,3 +1,5 @@
+:root { --accent: #21533e; --muted: #636b63; --border: #d7ddd4; }
+
 body {
     color: #fff;
     background: #17181c;

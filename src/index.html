@@ -27,23 +27,16 @@
         </template>
 
         <template id="newsItemTemp">
-            <div class="news__item">
-                <div class="news__meta">
-                    <div class="news__meta-photo"></div>
-                    <ul class="news__meta-details">
-                        <li class="news__meta-author"></li>
-                        <li class="news__meta-date"></li>
-                    </ul>
-                </div>
+            <article class="news__item">
+                <div class="news__meta"><img class="news__meta-photo" alt="" loading="lazy" /></div>
                 <div class="news__description">
+                    <p class="news__description-source"></p>
                     <h2 class="news__description-title"></h2>
-                    <h3 class="news__description-source"></h3>
                     <p class="news__description-content"></p>
-                    <p class="news__read-more">
-                        <a href="#">Read More</a>
-                    </p>
+                    <div class="news__byline"><span class="news__meta-author"></span><time class="news__meta-date"></time></div>
+                    <p class="news__read-more"><a target="_blank" rel="noopener noreferrer">Читать статью ↗</a></p>
                 </div>
-            </div>
+            </article>
         </template>
     </body>
 </html>
