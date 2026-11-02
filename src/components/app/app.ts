@@ -7,6 +7,7 @@ export default class App {
     private readonly controller: AppController = new AppController();
     private readonly view: AppView = new AppView();
     private selectedSource: string | null = null;
+    private requestId: number = 0;
 
     public async start(): Promise<void> {
         const sources: HTMLElement = requireElement('.sources', HTMLElement);
@@ -34,16 +35,18 @@ export default class App {
     private async loadNews(sourceId: string): Promise<void> {
         if (sourceId === this.selectedSource) return;
         this.selectedSource = sourceId;
+        const currentRequest: number = ++this.requestId;
         this.view.selectSource(sourceId);
         this.view.clearNews();
         this.view.setStatus('Загружаем новости…');
 
         try {
             await this.controller.getNews(sourceId, (data: NewsResponse): void => {
-                this.view.drawNews(data);
+                if (currentRequest === this.requestId) this.view.drawNews(data);
             });
         } catch (error: unknown) {
-            this.selectedSource = null; // Теперь на тот же источник можно нажать повторно.
+            if (currentRequest !== this.requestId) return;
+            this.selectedSource = null;
             this.showError(error);
         }
     }
