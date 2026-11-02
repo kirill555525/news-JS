@@ -11,13 +11,15 @@
         "start": "webpack serve --open --config webpack.config.js --env mode=dev",
         "typecheck": "tsc --noEmit",
         "lint": "eslint src --max-warnings=0",
-        "build": "npm run typecheck && npm run lint && webpack --config webpack.config.js --env mode=prod"
+        "build": "npm run typecheck && npm run lint && webpack --config webpack.config.js --env mode=prod",
+        "deploy": "npm run build && gh-pages -d dist -m \"deploy: publish news API application\""
     },
     "devDependencies": {
         "@eslint/js": "10.0.1",
         "css-loader": "7.1.2",
         "dotenv-webpack": "8.1.1",
         "eslint": "10.14.0",
+        "gh-pages": "6.3.0",
         "html-webpack-plugin": "5.6.5",
         "style-loader": "4.0.0",
         "ts-loader": "9.5.4",
