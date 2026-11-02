@@ -11,8 +11,17 @@
             <h1>News Portal</h1>
         </header>
         <main>
-            <div class="sources buttons"></div>
-            <div class="news"></div>
+            <section class="source-panel" aria-labelledby="sources-title">
+                <div class="source-toolbar">
+                    <div><h2 id="sources-title">Ваши источники</h2><p class="source-count" aria-live="polite"></p></div>
+                    <label class="search-label" for="source-search">Поиск источника
+                        <input id="source-search" type="search" placeholder="Например, BBC" autocomplete="off" />
+                    </label>
+                </div>
+                <div class="sources" aria-label="Источники новостей"></div>
+            </section>
+            <p class="status" role="status" aria-live="polite"></p>
+            <div class="news" aria-label="Новости"></div>
         </main>
         <footer>
             <p class="copyright">
