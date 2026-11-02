@@ -10,8 +10,15 @@ export default class App {
     public start(): void {
         const sources: HTMLElement = requireElement('.sources', HTMLElement);
         sources.addEventListener('click', (event: MouseEvent): void => {
-            this.controller.getNews(event, (data: NewsResponse): void => this.view.drawNews(data));
+            if (!(event.target instanceof Element)) return;
+            const button: Element | null = event.target.closest('.source__item');
+            if (!(button instanceof HTMLButtonElement) || !sources.contains(button)) return;
+            const sourceId: string | undefined = button.dataset.sourceId;
+            if (!sourceId) return;
+            void this.controller.getNews(sourceId, (data: NewsResponse): void => this.view.drawNews(data))
+                .catch((error: unknown): void => console.error(error));
         });
-        this.controller.getSources((data: SourcesResponse): void => this.view.drawSources(data));
+        void this.controller.getSources((data: SourcesResponse): void => this.view.drawSources(data))
+            .catch((error: unknown): void => console.error(error));
     }
 }
